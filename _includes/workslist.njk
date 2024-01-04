@@ -1,0 +1,18 @@
+<ol reversed class="list">
+  {% for post in postslist | reverse %}
+    <li class="card work">
+      <picture class="card__cover" style="--bg: url({{ post.data.img }})">
+        <img class="card__img" src="{{ post.data.img }}" width="298" height="160" alt=""/>
+      </picture>
+      <a href="{{ post.url }}" class="card__title">
+        {% if post.data.title %}
+          {{ post.data.title }}
+        {% else %}
+          <code>{{ post.url }}</code>
+        {% endif %}
+      </a>
+      <p class="card__description">{{ post.data.description }}</p>
+      <time class="card__date" datetime="{{ post.date | htmlDateString }}">{{ post.date | readableDate("LLLL yyyy") }}</time>
+    </li>
+  {% endfor %}
+</ol>

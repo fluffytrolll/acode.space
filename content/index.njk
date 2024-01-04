@@ -1,0 +1,99 @@
+---
+layout: layouts/home.njk
+eleventyNavigation:
+  key: Home
+  order: 1
+numberOfLatestPostsToShow: 4
+---
+
+<section class="hero">
+	<picture>
+		<source
+			media="(min-width: 1440px)"
+			srcset="img/avatar-d@x1.webp, img/avatar-d@x2.webp x2"
+			type="image/webp"
+		/>
+		<source
+			media="(min-width: 1440px)"
+			srcset="img/avatar-d@x1.jpg, img/avatar-d@x2.jpg x2"
+			type="image/jpg"
+		/>
+		<source
+			media="(min-width: 744px)"
+			srcset="img/avatar-t@x1.webp, img/avatar-t@x2.webp x2"
+			type="image/webp"
+		/>
+		<source
+			media="(min-width: 744px)"
+			srcset="img/avatar-t@x1.jpg, img/avatar-t@x2.jpg x2"
+			type="image/jpg"
+		/>
+		<img
+			class="avatar"
+			width="296"
+			height="296"
+			src="img/avatar-m@x1.webp"
+			srcset="img/avatar-m@x1.webp x1, img/avatar-m@x2.webp x2"
+			alt="Anpilogov Artyom"
+			loading="lazy"
+		/>
+	</picture>
+	<div class="about">
+		<h2>About me</h2>
+		<p>
+			Hi, my name is Artyom, and I'm a frontend developer. I've been working in
+			the field of information technology for over 4 years, openly sharing my
+			experience with others.
+		</p>
+		<p>
+			On my blog, you'll find not only my best works but also short articles on
+			various aspects of the frontend development world. I'd be happy to share
+			interesting approaches to creating user interfaces, new technologies, and
+			problem-solving solutions with you.
+		</p>
+		<p>
+			Don't forget to check out my profiles on social media to stay updated. See
+			you in the frontend world!
+		</p>
+	</div>
+	<svg class="arrow-down" width="24" height="24">
+		<use xlink:href="#arrow-down" href="#arrow-down"></use>
+	</svg>
+</section>
+
+<section class="last-posts">
+	<div class="posts">
+		{% set worksCount = collections.works | length %} 
+		<h2 class="title">
+			Works <sup>{{worksCount}}</sup>
+		</h2>
+
+		{% set postslist = collections.works | head(-1 * numberOfLatestPostsToShow) %}
+		{% set postslistCounter = worksCount %}
+		{% include "workslist.njk" %}
+
+		{% set morePosts = worksCount - numberOfLatestPostsToShow %} {% if morePosts > 0 %}
+		<p>
+			{{ morePosts }} more post{% if morePosts != 1 %}s{% endif %} can be found
+			in <a href="/works/">the worcks</a>.
+		</p>
+		{% endif %}
+	</div>
+	<div class="posts">
+		{% set postsCount = collections.posts | length %} 
+		<h2 class="title">
+			Blog <sup>{{postsCount}}</sup>
+		</h2>
+
+		{% set postslist = collections.posts | head(-1 * numberOfLatestPostsToShow) %}
+		{% set postslistCounter = postsCount %}
+		{% include "postslist.njk" %}
+
+		{% set morePosts = postsCount - numberOfLatestPostsToShow %} {% if morePosts > 0 %}
+		<p>
+			{{ morePosts }} more post{% if morePosts != 1 %}s{% endif %} can be found
+			in <a href="/blog/">the archive</a>.
+		</p>
+		{% endif %}
+	</div>
+</section>
