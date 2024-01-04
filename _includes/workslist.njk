@@ -1,8 +1,8 @@
 <ol reversed class="list">
   {% for post in postslist | reverse %}
-    <li class="card work">
-      <picture class="card__cover" style="--bg: url({{ post.data.img }})">
-        <img class="card__img" src="{{ post.data.img }}" width="298" height="160" alt=""/>
+    <li class="card">
+      <picture class="card__cover" style="--bg: url(/img/avatar.webp)">
+        <img class="card__img" src="/img/avatar.webp" width="298" height="160" alt=""/>
       </picture>
       <a href="{{ post.url }}" class="card__title">
         {% if post.data.title %}

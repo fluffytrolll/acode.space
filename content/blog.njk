@@ -5,6 +5,14 @@ eleventyNavigation:
   order: 3
 ---
 
-<h1>Blog</h1>
-{% set postslist = collections.posts %}
-{% include "postslist.njk" %}
+<div class="container">
+  {% set postsCount = collections.posts | length %}
+  <div class="heading">
+    <h2 class="title">
+      Blog
+      <sup>{{ postsCount }}</sup>
+    </h2>
+  </div>
+  {% set postslist = collections.posts %}
+  {% include "postslist.njk" %}
+</div>

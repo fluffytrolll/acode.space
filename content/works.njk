@@ -5,6 +5,14 @@ eleventyNavigation:
   order: 2
 ---
 
-<h1>Works</h1>
-{% set postslist = collections.works %}
-{% include "postslist.njk" %}
+<div class="container page">
+  {% set worksCount = collections.works | length %}
+  <div class="heading">
+    <h2 class="title">
+      Works
+      <sup>{{ worksCount }}</sup>
+    </h2>
+  </div>
+  {% set postslist = collections.works %}
+  {% include "workslist.njk" %}
+</div>
